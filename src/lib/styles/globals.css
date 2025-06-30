@@ -12,6 +12,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
 }
 
 code {
@@ -160,5 +161,54 @@ code {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* https://codepen.io/yuhomyan/pen/OJMejWJ */
+  .btn-gradient-shine {
+    @apply relative border-0 text-white overflow-hidden;
+    background: linear-gradient(0deg, #e76fd4 0%, #f966b7 100%);
+  }
+
+  .btn-gradient-shine:hover {
+    @apply no-underline text-white;
+    opacity: 0.7;
+  }
+
+  .btn-gradient-shine:before {
+    @apply absolute left-0 w-8 h-full bg-white/50;
+    content: "";
+    display: inline-block;
+    top: -180px;
+    animation: shiny-btn 6s ease-in-out infinite;
+  }
+
+  .btn-gradient-shine:active {
+    box-shadow:
+      4px 4px 6px 0 rgba(255, 255, 255, 0.3),
+      -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+      inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+      inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Animations */
+@keyframes shiny-btn {
+  0% {
+    transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+  81% {
+    transform: scale(4) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(50) rotate(45deg);
+    opacity: 0;
   }
 }
