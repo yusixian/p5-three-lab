@@ -1,24 +1,24 @@
 export const Footer = () => {
   return (
-    <footer className="border-t border-border/60 bg-background/80 backdrop-blur-sm mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+    <footer className="mt-auto border-border/60 border-t bg-background/80 backdrop-blur-sm">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-md flex items-center justify-center text-white font-bold text-xs">
+            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-purple-500 to-pink-500 font-bold text-white text-xs">
               P5
             </div>
-            <span className="text-sm font-medium text-foreground">
+            <span className="font-medium text-foreground text-sm">
               p5-three-lab
             </span>
           </div>
 
-          <div className="flex items-center gap-6 text-sm text-muted-foreground">
+          <div className="flex items-center gap-6 text-muted-foreground text-sm">
             <span>© {new Date().getFullYear()} p5-three-lab</span>
             <a
               href="https://github.com/yusixian/p5-three-lab"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors"
+              className="transition-colors hover:text-foreground"
             >
               GitHub
             </a>

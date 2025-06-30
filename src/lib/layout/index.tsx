@@ -23,7 +23,7 @@ export const Layout = ({ children }: LayoutProps) => {
           className={
             isExamplesPage
               ? 'flex-1'
-              : 'flex-1 wrapper max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
+              : 'wrapper mx-auto max-w-7xl flex-1 px-4 sm:px-6 lg:px-8'
           }
         >
           {children}

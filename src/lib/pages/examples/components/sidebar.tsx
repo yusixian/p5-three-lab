@@ -33,13 +33,13 @@ export const Sidebar = ({
   onComponentSelect,
 }: SidebarProps) => {
   return (
-    <div className="w-80 bg-background border-r border-border h-full overflow-y-auto">
+    <div className="h-full w-80 overflow-y-auto border-border border-r bg-background">
       <div className="p-6">
         <div className="mb-8">
-          <h2 className="text-lg font-semibold text-foreground mb-2">
+          <h2 className="mb-2 font-semibold text-foreground text-lg">
             Components
           </h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Explore reusable creative components
           </p>
         </div>
@@ -47,12 +47,12 @@ export const Sidebar = ({
         <div className="space-y-6">
           {categories.map((category) => (
             <div key={category.title}>
-              <h3 className="text-sm font-medium text-foreground mb-3 uppercase tracking-wide">
+              <h3 className="mb-3 font-medium text-foreground text-sm uppercase tracking-wide">
                 {category.title}
               </h3>
               <div className="space-y-1">
                 {category.items.length === 0 ? (
-                  <div className="px-3 py-2 text-sm text-muted-foreground/60 italic">
+                  <div className="px-3 py-2 text-muted-foreground/60 text-sm italic">
                     Coming soon...
                   </div>
                 ) : (
@@ -63,7 +63,7 @@ export const Sidebar = ({
                         activeComponent === item.id ? 'default' : 'ghost'
                       }
                       onClick={() => onComponentSelect(item.id)}
-                      className={`w-full justify-between h-auto px-3 py-3 text-sm transition-all duration-200 ${
+                      className={`h-auto w-full justify-between px-3 py-3 text-sm transition-all duration-200 ${
                         activeComponent === item.id
                           ? 'bg-primary text-primary-foreground shadow-sm'
                           : 'text-foreground hover:bg-muted hover:text-foreground'
@@ -72,12 +72,12 @@ export const Sidebar = ({
                       <span className="font-medium">{item.name}</span>
                       <div className="flex gap-1">
                         {item.isNew && (
-                          <span className="px-2 py-0.5 bg-emerald-500 text-white text-xs rounded-full font-medium">
+                          <span className="rounded-full bg-emerald-500 px-2 py-0.5 font-medium text-white text-xs">
                             New
                           </span>
                         )}
                         {item.isUpdated && (
-                          <span className="px-2 py-0.5 bg-blue-500 text-white text-xs rounded-full font-medium">
+                          <span className="rounded-full bg-blue-500 px-2 py-0.5 font-medium text-white text-xs">
                             Updated
                           </span>
                         )}

@@ -72,6 +72,9 @@
         },
         "noEmptyBlockStatements": "error",
         "useAwait": "error"
+      },
+      "nursery": {
+        "useSortedClasses": "error"
       }
     }
   },

@@ -6,12 +6,12 @@ import { Button } from '@/lib/components/ui/button';
 const Home = () => {
   return (
     <div className="relative flex flex-col items-center justify-center overflow-hidden py-12">
-      <div className="relative w-full max-w-6xl mx-auto px-6 text-center space-y-12">
+      <div className="relative mx-auto w-full max-w-6xl space-y-12 px-6 text-center">
         <div className="space-y-6">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 dark:from-purple-400 dark:via-pink-400 dark:to-blue-400 bg-clip-text text-transparent">
+          <h1 className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text font-bold text-5xl text-transparent dark:from-purple-400 dark:via-pink-400 dark:to-blue-400">
             p5-three-lab
           </h1>
-          <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          <h2 className="mx-auto max-w-4xl font-semibold text-2xl text-gray-700 leading-relaxed dark:text-gray-300">
             🔬 Experimental playground of reusable Three.js & p5.js components.
             <br />
             Crafted by <a href="https://github.com/yusixian">cos</a>.
@@ -23,10 +23,10 @@ const Home = () => {
           <div className="flex justify-center">
             <Link
               to="/examples"
-              className="group btn-gradient-shine relative inline-flex items-center gap-3 px-8 py-4 font-semibold text-lg rounded-2xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105"
+              className="group btn-gradient-shine hover:-translate-y-1 relative inline-flex transform items-center gap-3 rounded-2xl px-8 py-4 font-semibold text-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
               Explore Components
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
           {/* Secondary actions */}
@@ -39,13 +39,13 @@ const Home = () => {
             >
               <Button
                 variant="outline"
-                className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700 hover:bg-white dark:hover:bg-gray-800 transition-all duration-200"
+                className="border-gray-200 bg-white/80 backdrop-blur-sm transition-all duration-200 hover:bg-white dark:border-gray-700 dark:bg-gray-800/80 dark:hover:bg-gray-800"
               >
                 <Github className="size-4" />
                 GitHub
               </Button>
             </a>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
+            <div className="text-gray-500 text-sm dark:text-gray-400">
               React • Three.js • p5.js
             </div>
           </div>

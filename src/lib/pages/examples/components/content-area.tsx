@@ -32,16 +32,16 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
     switch (activeComponent) {
       case 'blur-text':
         return (
-          <div className="flex items-center justify-center min-h-[400px] p-8">
+          <div className="flex min-h-[400px] items-center justify-center p-8">
             <BlurTextDemo />
           </div>
         );
       default:
         return (
-          <div className="flex items-center justify-center h-96 text-muted-foreground">
-            <div className="text-center space-y-4">
+          <div className="flex h-96 items-center justify-center text-muted-foreground">
+            <div className="space-y-4 text-center">
               <div className="text-6xl">🚧</div>
-              <p className="text-lg font-medium">
+              <p className="font-medium text-lg">
                 Component under development...
               </p>
               <p className="text-sm">Stay tuned for more exciting components</p>
@@ -54,12 +54,12 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
   const renderCode = () => {
     return (
       <div className="p-6">
-        <div className="bg-gray-950 rounded-xl p-6 font-mono text-sm text-gray-100 overflow-x-auto">
-          <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-800">
+        <div className="overflow-x-auto rounded-xl bg-gray-950 p-6 font-mono text-gray-100 text-sm">
+          <div className="mb-4 flex items-center justify-between border-gray-800 border-b pb-3">
             <span className="text-gray-400">BlurText.tsx</span>
             <Button
               size="sm"
-              className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs"
+              className="bg-blue-600 px-3 py-1 text-white text-xs hover:bg-blue-700"
             >
               Copy Code
             </Button>
@@ -134,12 +134,12 @@ export default function Demo() {
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-background">
+    <div className="flex h-full flex-1 flex-col bg-background">
       {/* Header */}
-      <div className="border-b border-border bg-background/95 backdrop-blur-sm">
+      <div className="border-border border-b bg-background/95 backdrop-blur-sm">
         <div className="p-6">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold text-foreground mb-2">
+            <h1 className="mb-2 font-bold text-3xl text-foreground">
               {getComponentTitle()}
             </h1>
             <p className="text-muted-foreground">{getComponentDescription()}</p>
@@ -152,10 +152,10 @@ export default function Demo() {
                 key={tab.id}
                 variant={activeTab === tab.id ? 'default' : 'ghost'}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
+                className={`flex items-center gap-2 px-4 py-2.5 font-medium text-sm transition-all duration-200 ${
                   activeTab === tab.id
                     ? 'bg-primary text-primary-foreground shadow-sm'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                 }`}
               >
                 {tab.label}
@@ -170,22 +170,22 @@ export default function Demo() {
 
       {/* Customize section for preview */}
       {activeTab === 'preview' && activeComponent === 'blur-text' && (
-        <div className="border-t border-border bg-muted/30 p-6">
+        <div className="border-border border-t bg-muted/30 p-6">
           <div className="max-w-md">
-            <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+            <h3 className="mb-4 flex items-center gap-2 font-semibold text-foreground">
               Customize Parameters
             </h3>
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
                 <label
                   htmlFor={animateById}
-                  className="block text-muted-foreground mb-1 font-medium"
+                  className="mb-1 block font-medium text-muted-foreground"
                 >
                   Animation Type:
                 </label>
                 <select
                   id={animateById}
-                  className="w-full px-3 py-2 bg-background border border-input rounded-md text-foreground focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-foreground focus:border-transparent focus:ring-2 focus:ring-primary"
                 >
                   <option>Word</option>
                   <option>Letter</option>
@@ -194,13 +194,13 @@ export default function Demo() {
               <div>
                 <label
                   htmlFor={directionId}
-                  className="block text-muted-foreground mb-1 font-medium"
+                  className="mb-1 block font-medium text-muted-foreground"
                 >
                   Animation Direction:
                 </label>
                 <select
                   id={directionId}
-                  className="w-full px-3 py-2 bg-background border border-input rounded-md text-foreground focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-foreground focus:border-transparent focus:ring-2 focus:ring-primary"
                 >
                   <option>Up to Down</option>
                   <option>Down to Up</option>
@@ -211,7 +211,7 @@ export default function Demo() {
               <div className="col-span-2">
                 <label
                   htmlFor={delayId}
-                  className="block text-muted-foreground mb-1 font-medium"
+                  className="mb-1 block font-medium text-muted-foreground"
                 >
                   Delay Time: 200ms
                 </label>
@@ -221,7 +221,7 @@ export default function Demo() {
                   min="0"
                   max="1000"
                   defaultValue="200"
-                  className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer slider"
+                  className="slider h-2 w-full cursor-pointer appearance-none rounded-lg bg-muted"
                 />
               </div>
             </div>

@@ -13,27 +13,27 @@ const Examples = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Top Navigation */}
-      <header className="bg-background/80 backdrop-blur-md border-b border-border sticky top-0 z-20">
-        <div className="max-w-full mx-auto px-6 h-16 flex items-center justify-between">
+      <header className="sticky top-0 z-20 border-border border-b bg-background/80 backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-full items-center justify-between px-6">
           <Link
             to="/"
-            className="flex items-center gap-3 text-foreground hover:text-primary transition-colors group"
+            className="group flex items-center gap-3 text-foreground transition-colors hover:text-primary"
           >
-            <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
+            <ArrowLeft className="group-hover:-translate-x-1 h-5 w-5 transition-transform" />
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 font-bold text-sm text-white">
                 P5
               </div>
               <span className="font-semibold text-lg">p5-three-lab</span>
             </div>
           </Link>
           <div className="flex items-center gap-4">
-            <div className="text-sm text-muted-foreground">Components</div>
+            <div className="text-muted-foreground text-sm">Components</div>
             <a
               href="https://github.com/yusixian/p5-three-lab"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="font-medium text-muted-foreground text-sm transition-colors hover:text-foreground"
             >
               GitHub
             </a>
