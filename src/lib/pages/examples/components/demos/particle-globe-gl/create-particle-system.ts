@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as THREE from 'three';
 
 import { noise, rotateAroundAxis } from './shaders';
@@ -42,10 +41,12 @@ export function createParticleSystem() {
     transparent: true,
     depthWrite: false,
     blending: THREE.AdditiveBlending,
-    onBeforeCompile: (shader) => {
-      shader.uniforms.time = gu.time;
-      shader.uniforms.radius = mu.radius;
-      shader.vertexShader = `
+  });
+
+  m.onBeforeCompile = (shader) => {
+    shader.uniforms.time = gu.time;
+    shader.uniforms.radius = mu.radius;
+    shader.vertexShader = `
     uniform float time;
     uniform float radius;
     
@@ -84,9 +85,9 @@ export function createParticleSystem() {
     }
     ${shader.vertexShader}
   `
-        .replace(
-          `#include <begin_vertex>`,
-          `#include <begin_vertex>
+      .replace(
+        `#include <begin_vertex>`,
+        `#include <begin_vertex>
       float t = time * 0.1;
       
       mat4 rot = rotationMatrix(axes, phases + t);
@@ -97,20 +98,20 @@ export function createParticleSystem() {
       
       transformed = pos; 
     `,
-        )
-        .replace(
-          `gl_PointSize = size;`,
-          `
+      )
+      .replace(
+        `gl_PointSize = size;`,
+        `
         float sizeFactor = 1. - (1./ ${layersAmount}. * layers);
         gl_PointSize = size * pow(vIntensity, 0.5) * sizeFactor;`,
-        );
-      //console.log(shader.vertexShader)
-      shader.fragmentShader = `
+      );
+    //console.log(shader.vertexShader)
+    shader.fragmentShader = `
     varying float vIntensity;
     ${shader.fragmentShader}
   `.replace(
-        `#include <color_fragment>`,
-        `#include <color_fragment>
+      `#include <color_fragment>`,
+      `#include <color_fragment>
       
       vec2 uv = (gl_PointCoord.xy - 0.5) * 2.;
       if (length(uv) > 1.) discard;
@@ -123,10 +124,10 @@ export function createParticleSystem() {
       float radialAlpha = smoothstep(1., 0.5, length(uv));
       diffuseColor.a *= radialAlpha;
     `,
-      );
-      //console.log(shader.fragmentShader)
-    },
-  });
+    );
+    //console.log(shader.fragmentShader)
+  };
+
   const p = new THREE.Points(g, m);
   groupParticleGlobe.add(p);
   groupParticleGlobe.scale.set(0.28, 0.28, 0.28);
