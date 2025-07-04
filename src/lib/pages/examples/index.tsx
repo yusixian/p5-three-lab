@@ -8,7 +8,7 @@ import { ContentArea } from './components/content-area';
 import { Sidebar } from './components/sidebar';
 
 const Examples = () => {
-  const [activeComponent, setActiveComponent] = useState('blur-text');
+  const [activeComponent, setActiveComponent] = useState('particle-globe');
 
   return (
     <div className="min-h-screen bg-background">
@@ -43,7 +43,7 @@ const Examples = () => {
       </header>
 
       {/* Main Content */}
-      <div className="flex h-[calc(100vh-4rem)]">
+      <div className="flex h-[calc(100vh-4rem)] w-full overflow-hidden">
         <Sidebar
           activeComponent={activeComponent}
           onComponentSelect={setActiveComponent}
