@@ -169,7 +169,6 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
           filename={activeCodeFile}
           theme={theme}
           showLineNumbers={true}
-          className="max-h-[calc(100vh-300px)] overflow-auto"
         />
       </div>
     );
@@ -232,7 +231,7 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
         </div>
       </div>
       {/* Content */}
-      {renderContent()}
+      <div className="flex-1">{renderContent()}</div>
     </div>
   );
 };
