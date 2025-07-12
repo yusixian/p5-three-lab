@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/lib/components/ui/button';
+import { CodeBlock } from '@/lib/components/ui/code-block';
+import { useTheme } from '@/lib/hooks/use-theme';
 import { ParticleGlobeGLDemo } from '@/lib/pages/examples/components/demos/particle-globe-gl';
 import { ParticleLineGlobeGLDemo } from '@/lib/pages/examples/components/demos/particle-line-globe-gl';
 import { loadSourceCodes } from '@/lib/utils';
@@ -19,6 +21,7 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
   const [sourceCodes, setSourceCodes] = useState<Record<string, string>>({});
   const [activeCodeFile, setActiveCodeFile] = useState<string>('');
   const [isLoadingCode, setIsLoadingCode] = useState(false);
+  const theme = useTheme();
 
   // Load source codes when activeComponent changes and code tab is active
   useEffect(() => {
@@ -96,15 +99,6 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
     }
   };
 
-  const copyToClipboard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      // You could add a toast notification here
-    } catch (error) {
-      console.error('Failed to copy to clipboard:', error);
-    }
-  };
-
   const renderCode = () => {
     if (isLoadingCode) {
       return (
@@ -131,11 +125,30 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
       );
     }
 
+    const languageMap: Record<string, string> = {
+      '.tsx': 'tsx',
+      '.ts': 'typescript',
+      '.jsx': 'jsx',
+      '.js': 'javascript',
+      '.css': 'css',
+      '.json': 'json',
+      '.glsl': 'glsl',
+      '.vert': 'glsl',
+      '.frag': 'glsl',
+    };
+
+    const getLanguage = (filename: string) => {
+      const extension = Object.keys(languageMap).find((ext) =>
+        filename.endsWith(ext),
+      );
+      return extension ? languageMap[extension] : 'typescript';
+    };
+
     return (
-      <div className="p-6">
+      <div className="space-y-4 p-6">
         {/* File tabs */}
         {fileNames.length > 1 && (
-          <div className="mb-4 flex gap-2 border-gray-800 border-b pb-3">
+          <div className="flex gap-2 border-border border-b pb-3">
             {fileNames.map((fileName) => (
               <Button
                 key={fileName}
@@ -150,21 +163,14 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
           </div>
         )}
 
-        <div className="overflow-x-auto rounded-xl bg-gray-950 p-6 font-mono text-gray-100 text-sm">
-          <div className="mb-4 flex items-center justify-between border-gray-800 border-b pb-3">
-            <span className="text-gray-400">{activeCodeFile}</span>
-            <Button
-              size="sm"
-              onClick={() => copyToClipboard(currentCode)}
-              className="bg-blue-600 px-3 py-1 text-white text-xs hover:bg-blue-700"
-            >
-              Copy Code
-            </Button>
-          </div>
-          <pre className="overflow-x-auto">
-            <code>{currentCode}</code>
-          </pre>
-        </div>
+        <CodeBlock
+          code={currentCode}
+          language={getLanguage(activeCodeFile)}
+          filename={activeCodeFile}
+          theme={theme}
+          showLineNumbers={true}
+          className="max-h-[calc(100vh-300px)] overflow-auto"
+        />
       </div>
     );
   };
