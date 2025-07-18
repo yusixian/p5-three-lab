@@ -117,13 +117,13 @@ export const ParticleGlobeGLDemo = forwardRef<HomeGLRef>((_props, ref) => {
   });
 
   return (
-    <div className="flex w-full flex-col overflow-auto">
+    <div className="flex w-full flex-col">
       <div className="flex items-center gap-4">
         <Button className="mt-4" onClick={() => setIsActive(!isActive)}>
           {isActive ? 'Stop' : 'Active'}
         </Button>
       </div>
-      <div className="relative h-[70dvh] min-h-[600px] w-full">
+      <div className="relative h-[60dvh] min-h-[600px] w-full">
         <div
           className="globe-gl absolute top-0 left-0 size-full"
           ref={containerRef}

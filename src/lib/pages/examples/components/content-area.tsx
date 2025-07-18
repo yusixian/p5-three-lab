@@ -74,80 +74,14 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
     switch (activeComponent) {
       case 'particle-globe':
         return (
-          <div className="flex h-full flex-col">
-            <div className="flex min-h-[500px] flex-1 items-center justify-center bg-gradient-to-br from-background to-muted/20 p-8">
-              <ParticleGlobeGLDemo />
-            </div>
-            <div className="border-border border-t bg-muted/30 p-6">
-              <h3 className="mb-4 font-semibold text-foreground">Customize</h3>
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  <div className="space-y-2">
-                    <div className="font-medium text-foreground text-sm">
-                      Particle Count
-                    </div>
-                    <div className="text-muted-foreground text-xs">
-                      Number of particles to render
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="font-medium text-foreground text-sm">
-                      Animation Speed
-                    </div>
-                    <div className="text-muted-foreground text-xs">
-                      Speed of particle animation
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="font-medium text-foreground text-sm">
-                      Globe Size
-                    </div>
-                    <div className="text-muted-foreground text-xs">
-                      Radius of the particle globe
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="flex items-center justify-center bg-gradient-to-br from-background to-muted/20 p-8 pb-40">
+            <ParticleGlobeGLDemo />
           </div>
         );
       case 'particle-line-globe':
         return (
-          <div className="flex h-full flex-col">
-            <div className="flex min-h-[500px] flex-1 items-center justify-center bg-gradient-to-br from-background to-muted/20 p-8">
-              <ParticleLineGlobeGLDemo />
-            </div>
-            <div className="border-border border-t bg-muted/30 p-6">
-              <h3 className="mb-4 font-semibold text-foreground">Customize</h3>
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  <div className="space-y-2">
-                    <div className="font-medium text-foreground text-sm">
-                      Line Thickness
-                    </div>
-                    <div className="text-muted-foreground text-xs">
-                      Width of connecting lines
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="font-medium text-foreground text-sm">
-                      Connection Distance
-                    </div>
-                    <div className="text-muted-foreground text-xs">
-                      Maximum distance for connections
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="font-medium text-foreground text-sm">
-                      Rotation Speed
-                    </div>
-                    <div className="text-muted-foreground text-xs">
-                      Speed of globe rotation
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="flex min-h-[500px] flex-1 items-center justify-center bg-gradient-to-br from-background to-muted/20 p-8 pb-40">
+            <ParticleLineGlobeGLDemo />
           </div>
         );
       default:
@@ -268,7 +202,7 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
   };
 
   return (
-    <div className="flex h-full flex-col bg-background">
+    <div className="flex h-full flex-col overflow-auto bg-background">
       {/* Header */}
       <div className="border-border border-b bg-background/95 backdrop-blur-sm">
         <div className="p-6">
@@ -300,9 +234,8 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
           </div>
         </div>
       </div>
-
       {/* Content */}
-      <div className="flex-1 overflow-hidden">{renderContent()}</div>
+      <div>{renderContent()}</div>
     </div>
   );
 };

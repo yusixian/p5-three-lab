@@ -17,7 +17,7 @@ interface Category {
 
 const categories: Array<Category> = [
   {
-    title: 'Text Animations',
+    title: 'P5.js Animate',
     items: [],
   },
   {
@@ -37,13 +37,6 @@ export const Sidebar = ({
     <div className="h-full w-full border-border border-r bg-background">
       <div className="h-full overflow-y-auto">
         <div className="p-4 sm:p-6">
-          {/* Header */}
-          <div className="mb-6">
-            <h2 className="mb-1 font-semibold text-base text-foreground sm:text-lg">
-              Text Animations
-            </h2>
-          </div>
-
           {/* Component Categories */}
           <div className="space-y-6">
             {categories.map((category) => (
