@@ -74,19 +74,85 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
     switch (activeComponent) {
       case 'particle-globe':
         return (
-          <div className="flex min-h-[400px] items-center justify-center p-6">
-            <ParticleGlobeGLDemo />
+          <div className="flex h-full flex-col">
+            <div className="flex min-h-[500px] flex-1 items-center justify-center bg-gradient-to-br from-background to-muted/20 p-8">
+              <ParticleGlobeGLDemo />
+            </div>
+            <div className="border-border border-t bg-muted/30 p-6">
+              <h3 className="mb-4 font-semibold text-foreground">Customize</h3>
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="space-y-2">
+                    <div className="font-medium text-foreground text-sm">
+                      Particle Count
+                    </div>
+                    <div className="text-muted-foreground text-xs">
+                      Number of particles to render
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="font-medium text-foreground text-sm">
+                      Animation Speed
+                    </div>
+                    <div className="text-muted-foreground text-xs">
+                      Speed of particle animation
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="font-medium text-foreground text-sm">
+                      Globe Size
+                    </div>
+                    <div className="text-muted-foreground text-xs">
+                      Radius of the particle globe
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         );
       case 'particle-line-globe':
         return (
-          <div className="flex min-h-[400px] items-center justify-center p-6">
-            <ParticleLineGlobeGLDemo />
+          <div className="flex h-full flex-col">
+            <div className="flex min-h-[500px] flex-1 items-center justify-center bg-gradient-to-br from-background to-muted/20 p-8">
+              <ParticleLineGlobeGLDemo />
+            </div>
+            <div className="border-border border-t bg-muted/30 p-6">
+              <h3 className="mb-4 font-semibold text-foreground">Customize</h3>
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="space-y-2">
+                    <div className="font-medium text-foreground text-sm">
+                      Line Thickness
+                    </div>
+                    <div className="text-muted-foreground text-xs">
+                      Width of connecting lines
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="font-medium text-foreground text-sm">
+                      Connection Distance
+                    </div>
+                    <div className="text-muted-foreground text-xs">
+                      Maximum distance for connections
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="font-medium text-foreground text-sm">
+                      Rotation Speed
+                    </div>
+                    <div className="text-muted-foreground text-xs">
+                      Speed of globe rotation
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         );
       default:
         return (
-          <div className="flex h-96 items-center justify-center text-muted-foreground">
+          <div className="flex h-full items-center justify-center text-muted-foreground">
             <div className="space-y-4 text-center">
               <div className="text-6xl">🚧</div>
               <p className="font-medium text-lg">
@@ -145,10 +211,10 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
     };
 
     return (
-      <div className="space-y-4 p-6">
+      <div className="flex h-full flex-col p-6">
         {/* File tabs */}
         {fileNames.length > 1 && (
-          <div className="flex gap-2 border-border border-b pb-3">
+          <div className="mb-4 flex gap-2 border-border border-b pb-3">
             {fileNames.map((fileName) => (
               <Button
                 key={fileName}
@@ -163,13 +229,15 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
           </div>
         )}
 
-        <CodeBlock
-          code={currentCode}
-          language={getLanguage(activeCodeFile)}
-          filename={activeCodeFile}
-          theme={theme}
-          showLineNumbers={true}
-        />
+        <div className="flex-1 overflow-hidden">
+          <CodeBlock
+            code={currentCode}
+            language={getLanguage(activeCodeFile)}
+            filename={activeCodeFile}
+            theme={theme}
+            showLineNumbers={true}
+          />
+        </div>
       </div>
     );
   };
@@ -200,28 +268,30 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
   };
 
   return (
-    <div className="flex h-full flex-1 flex-col overflow-auto bg-background">
+    <div className="flex h-full flex-col bg-background">
       {/* Header */}
       <div className="border-border border-b bg-background/95 backdrop-blur-sm">
         <div className="p-6">
           <div className="mb-6">
-            <h1 className="mb-2 font-bold text-3xl text-foreground">
+            <h1 className="mb-2 font-bold text-2xl text-foreground sm:text-3xl">
               {getComponentTitle()}
             </h1>
-            <p className="text-muted-foreground">{getComponentDescription()}</p>
+            <p className="text-muted-foreground text-sm sm:text-base">
+              {getComponentDescription()}
+            </p>
           </div>
 
           {/* Tabs */}
-          <div className="flex gap-2">
+          <div className="flex gap-1 rounded-lg bg-muted p-1">
             {tabs.map((tab) => (
               <Button
                 key={tab.id}
-                variant={activeTab === tab.id ? 'default' : 'ghost'}
+                variant="ghost"
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2.5 font-medium text-sm transition-all duration-200 ${
+                className={`flex-1 px-3 py-2 font-medium text-sm transition-all duration-200 sm:flex-none sm:px-4 ${
                   activeTab === tab.id
-                    ? 'bg-primary text-primary-foreground shadow-sm'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
                 {tab.label}
@@ -230,8 +300,9 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
           </div>
         </div>
       </div>
+
       {/* Content */}
-      <div className="flex-1">{renderContent()}</div>
+      <div className="flex-1 overflow-hidden">{renderContent()}</div>
     </div>
   );
 };
