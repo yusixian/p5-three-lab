@@ -18,7 +18,9 @@ interface Category {
 const categories: Array<Category> = [
   {
     title: 'P5.js Animate',
-    items: [],
+    items: [
+      { id: 'dynamic-particle-gl', name: 'Dynamic Particle GL', isNew: true },
+    ],
   },
   {
     title: 'Three 3D Animate',

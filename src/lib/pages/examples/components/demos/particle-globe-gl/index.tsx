@@ -22,7 +22,7 @@ export interface HomeGLRef {
 
 export const ParticleGlobeGLDemo = forwardRef<HomeGLRef>((_props, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const groupRef = useRef<THREE.Group>(null);
+  const groupRef = useRef<THREE.Group | null>(null);
   const [isActive, setIsActive] = useState(true);
   const isPortrait = useIsPortrait();
 

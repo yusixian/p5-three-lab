@@ -63,6 +63,7 @@
         }
       },
       "suspicious": {
+        "noExplicitAny": "off",
         "noDuplicateElseIf": "error",
         "noConsole": {
           "level": "error",

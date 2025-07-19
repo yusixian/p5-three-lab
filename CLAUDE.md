@@ -21,6 +21,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `pnpm test:ui` - Run tests with UI and coverage
 - `pnpm test:coverage` - Run tests with coverage report
 
+## Workflow Memories
+- Always run `nr biome:fix` or `nr biome:check` and fix error after code changes
+
 ## Architecture Overview
 
 This is a React + Three.js laboratory for experimental 3D graphics components, built with:

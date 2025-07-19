@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/lib/components/ui/button';
 import { CodeBlock } from '@/lib/components/ui/code-block';
 import { useTheme } from '@/lib/hooks/use-theme';
+import { DynamicParticleGLDemo } from '@/lib/pages/examples/components/demos/dynamic-particle-gl';
 import { ParticleGlobeGLDemo } from '@/lib/pages/examples/components/demos/particle-globe-gl';
 import { ParticleLineGlobeGLDemo } from '@/lib/pages/examples/components/demos/particle-line-globe-gl';
 import { loadSourceCodes } from '@/lib/utils';
@@ -34,6 +35,9 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
           break;
         case 'particle-line-globe':
           componentPath = 'particle-line-globe-gl';
+          break;
+        case 'dynamic-particle-gl':
+          componentPath = 'dynamic-particle-gl';
           break;
         default:
           componentPath = activeComponent;
@@ -82,6 +86,12 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
         return (
           <div className="flex min-h-[500px] flex-1 items-center justify-center bg-gradient-to-br from-background to-muted/20 p-8 pb-40">
             <ParticleLineGlobeGLDemo />
+          </div>
+        );
+      case 'dynamic-particle-gl':
+        return (
+          <div className="flex min-h-[500px] flex-1 items-center justify-center bg-gradient-to-br from-background to-muted/20 p-8 pb-40">
+            <DynamicParticleGLDemo />
           </div>
         );
       default:
@@ -196,6 +206,8 @@ export const ContentArea = ({ activeComponent }: ContentAreaProps) => {
         return 'A stunning 3D particle globe animation with WebGL and Three.js';
       case 'particle-line-globe':
         return 'A 3D particle line globe animation with WebGL and Three.js';
+      case 'dynamic-particle-gl':
+        return 'A dynamic particle system animation with P5.js and interactive image switching';
       default:
         return 'Explore the infinite possibilities of creative programming';
     }

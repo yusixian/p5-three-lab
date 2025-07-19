@@ -10,7 +10,7 @@ import { ContentArea } from './components/content-area';
 import { Sidebar } from './components/sidebar';
 
 const Examples = () => {
-  const [activeComponent, setActiveComponent] = useState('particle-globe');
+  const [activeComponent, setActiveComponent] = useState('dynamic-particle-gl');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const isMobile = useIsMobile();
 
