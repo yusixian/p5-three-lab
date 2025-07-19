@@ -1,5 +1,6 @@
 /** biome-ignore-all lint/nursery/useUniqueElementIds: React component with dynamic IDs that are guaranteed to be unique by React's reconciliation */
 
+import { Leva, useControls } from 'leva';
 import { ArrowLeft, ArrowRight, PauseIcon, PlayIcon } from 'lucide-react';
 import { useState } from 'react';
 
@@ -38,20 +39,6 @@ const imageNames = [
   'Cosine Gallery Logo',
   'Moe Copy AI Favicon',
 ];
-
-// Particle system configuration
-const getParticleConfig = (isMobile: boolean) => ({
-  closeEnoughTarget: 100,
-  speed: 3,
-  particleSize: isMobile ? 4 : 5,
-  mouseSize: 50,
-  scaleRatio: 1,
-  maxSpeedRange: [0.25, 2] as [number, number],
-  maxForceRange: [8, 15] as [number, number],
-  colorBlendRate: [0.01, 0.05] as [number, number],
-  noiseScale: 0.005,
-  noiseStrength: 0.6,
-});
 
 // Configuration display definitions
 const imageConfigFields = [
@@ -243,9 +230,58 @@ export const DynamicParticleGLDemo = () => {
   const [imageIdx, setImageIdx] = useState(0);
   const isMobile = false; // Simplified for demo, should use hook in real project
 
-  // Get current image info and particle config
+  // Leva controls for real-time particle configuration
+  const particleControls = useControls('Particle System', {
+    // Basic particle properties
+    particleSize: { value: isMobile ? 4 : 5, min: 1, max: 20, step: 1 },
+    speed: { value: 3, min: 0.1, max: 10, step: 0.1 },
+
+    // Target and interaction
+    closeEnoughTarget: { value: 100, min: 10, max: 500, step: 10 },
+    mouseSize: { value: 50, min: 10, max: 200, step: 5 },
+
+    // Force ranges
+    maxSpeedMin: { value: 0.25, min: 0.1, max: 5, step: 0.05 },
+    maxSpeedMax: { value: 2, min: 0.5, max: 10, step: 0.1 },
+    maxForceMin: { value: 8, min: 1, max: 20, step: 0.5 },
+    maxForceMax: { value: 15, min: 5, max: 50, step: 0.5 },
+
+    // Color blending
+    colorBlendMin: { value: 0.01, min: 0.001, max: 0.1, step: 0.001 },
+    colorBlendMax: { value: 0.05, min: 0.01, max: 0.2, step: 0.001 },
+
+    // Noise settings
+    noiseScale: { value: 0.005, min: 0.001, max: 0.02, step: 0.001 },
+    noiseStrength: { value: 0.6, min: 0, max: 2, step: 0.1 },
+
+    scaleRatio: { value: 1, min: 0.1, max: 3, step: 0.1 },
+  });
+
+  // Convert Leva controls to particle config format
+  const particleConfig = {
+    closeEnoughTarget: particleControls.closeEnoughTarget,
+    speed: particleControls.speed,
+    particleSize: particleControls.particleSize,
+    mouseSize: particleControls.mouseSize,
+    scaleRatio: particleControls.scaleRatio,
+    maxSpeedRange: [
+      particleControls.maxSpeedMin,
+      particleControls.maxSpeedMax,
+    ] as [number, number],
+    maxForceRange: [
+      particleControls.maxForceMin,
+      particleControls.maxForceMax,
+    ] as [number, number],
+    colorBlendRate: [
+      particleControls.colorBlendMin,
+      particleControls.colorBlendMax,
+    ] as [number, number],
+    noiseScale: particleControls.noiseScale,
+    noiseStrength: particleControls.noiseStrength,
+  };
+
+  // Get current image info
   const currentImageInfo = getSourceImgInfos(isMobile)[imageIdx];
-  const particleConfig = getParticleConfig(isMobile);
   const totalImages = getSourceImgInfos(isMobile).length;
 
   return (
@@ -280,7 +316,7 @@ export const DynamicParticleGLDemo = () => {
           <ArrowRight />
         </Button>
       </div>
-      <div>
+      <div className="relative">
         <DynamicParticleGL
           activeAnim={active}
           imageIdx={imageIdx}
@@ -293,16 +329,27 @@ export const DynamicParticleGLDemo = () => {
       </div>
 
       <div className="flex flex-col items-center space-y-1">
-        <div className="relative overflow-hidden rounded-lg border border-border bg-muted/20 p-2">
-          <img
-            src={currentImageInfo.url}
-            alt={imageNames[imageIdx]}
-            className="max-h-60 w-auto object-contain"
-          />
+        <div className="flex gap-4">
+          <div>
+            {/* Leva Control Panel */}
+            <Leva
+              fill
+              titleBar={false}
+              oneLineLabels={false}
+              collapsed={false}
+            />
+          </div>
+          <div className="relative overflow-hidden rounded-lg border border-border bg-muted/20 p-2">
+            <img
+              src={currentImageInfo.url}
+              alt={imageNames[imageIdx]}
+              className="max-h-60 w-auto object-contain"
+            />
+            <p className="text-center text-muted-foreground text-xs">
+              {imageNames[imageIdx]}
+            </p>
+          </div>
         </div>
-        <p className="text-center text-muted-foreground text-xs">
-          {imageNames[imageIdx]}
-        </p>
 
         {/* Configuration Grid - More Compact Layout */}
         <div className="w-full space-y-1">
