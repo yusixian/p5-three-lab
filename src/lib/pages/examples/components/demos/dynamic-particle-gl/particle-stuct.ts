@@ -24,7 +24,7 @@ export function generateRandomPos(
   return pos;
 }
 
-type ParticleConfig = {
+export type ParticleConfig = {
   closeEnoughTarget: number;
   speed: number;
   mouseSize: number;

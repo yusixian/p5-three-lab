@@ -6,24 +6,13 @@ import {
 import type P5 from 'p5';
 import { useMemo } from 'react';
 
-import { Particle } from './particle-stuct';
+import { Particle, type ParticleConfig } from './particle-stuct';
 
 export type MySketchProps = SketchProps & {
   activeAnim: boolean;
   imageIdx: number;
   id?: string;
-  particleConfig?: {
-    closeEnoughTarget: number;
-    speed: number;
-    mouseSize: number;
-    scaleRatio: number;
-    particleSize: number;
-    maxSpeedRange?: [number, number];
-    maxForceRange?: [number, number];
-    colorBlendRate?: [number, number];
-    noiseScale?: number;
-    noiseStrength?: number;
-  };
+  particleConfig?: ParticleConfig;
 };
 
 export const DynamicParticleGL = ({
