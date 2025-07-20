@@ -49,12 +49,6 @@
         "useBlockStatements": "error",
         "useCollapsedElseIf": "error",
         "useDefaultSwitchClause": "error",
-        "useConsistentArrayType": {
-          "level": "error",
-          "options": {
-            "syntax": "generic"
-          }
-        },
         "useFilenamingConvention": {
           "level": "error",
           "options": {
